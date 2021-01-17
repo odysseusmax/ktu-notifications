@@ -93,10 +93,9 @@ async def notification_fetcher():
                         await initiate_notify(change)
                         logger.info("potential new notification detected!")
                         cur_notifications = notifications
-                        
+
                     logger.info("one more done, many to go!")
                     x = 2
-
                 await asyncio.sleep(60 * x)
             except Exception as e:
                 logger.error(e, exc_info=True)
