@@ -1,9 +1,11 @@
 import os
 from pathlib import Path
+from tempfile import gettempdir
 
 
 class Config:
-    NOTIFICATIONS_FILE = Path("notifications.json")
+    TEMPDIR = Path(gettempdir())
+    NOTIFICATIONS_FILE = TEMPDIR.joinpath("notifications.json")
 
     PORT = os.environ.get("PORT", "3141")
     HOST = os.environ.get("HOST", "0.0.0.0")

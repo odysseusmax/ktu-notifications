@@ -1,3 +1,4 @@
+import os
 import asyncio
 
 from aiohttp import web
@@ -5,6 +6,7 @@ from aiohttp import web
 from .routes import routes
 from .bot import Bot
 from .bg_jobs import notification_fetcher
+from .config import Config
 
 
 async def start_background_tasks(app):
@@ -16,6 +18,8 @@ async def start_background_tasks(app):
 async def cleanup_background_tasks(app):
     app["task"].cancel()
     await app["task"]
+    os.remove(Config.NOTIFICATIONS_FILE)
+    os.rmdir(Config.TEMPDIR)
 
 
 app = web.Application()
