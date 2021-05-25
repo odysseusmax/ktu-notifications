@@ -73,7 +73,7 @@ async def notification_fetcher():
             try:
                 notifications = await fetch_notifications()
                 if isinstance(notifications, str):
-                    await bot.send_message(chat_id=374321319, text=notifications)
+                    await bot.send_message(chat_id=Config.ADMIN_ID, text=notifications)
                     x = 1
                 else:
                     change = find_difference(notifications, cur_notifications)
@@ -90,7 +90,7 @@ async def notification_fetcher():
                                 }
                             },
                         )
-                        await initiate_notify(change)
+                        # await initiate_notify(change)
                         logger.info("potential new notification detected!")
                         cur_notifications = notifications
 

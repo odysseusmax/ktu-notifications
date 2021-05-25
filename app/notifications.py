@@ -58,13 +58,13 @@ async def fetch_notifications():
             for tr in trs:
                 date_td, content_td = tr.find_all("td")
                 date = date_td.b
-                text = "\n".join([tx.strip() for tx in content_td.stripped_strings])
+                text = "\n".join(tx.strip() for tx in content_td.stripped_strings)
                 lis = content_td.ul.li
                 f_text = get_string(lis)
                 notifications.append(
                     {
-                        "text": f"{date.string}\n\n{text}",
-                        "formatted": f"{date.string}\n\n{f_text}",
+                        "text": f"{text}\n\n{date.string}",
+                        "formatted": f"{f_text}\n\n{date.string}",
                     }
                 )
             return notifications
