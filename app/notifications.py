@@ -55,8 +55,12 @@ async def fetch_notifications():
             table = soup.table
             trs = table.find_all("tr")
             notifications = []
-            for tr in trs:
-                date_td, content_td = tr.find_all("td")
+            for tr in trs[:2]:
+                try:
+                    date_td, content_td = tr.find_all("td")
+                except Exception:
+                    continue
+
                 date = date_td.b
                 text = "\n".join(tx.strip() for tx in content_td.stripped_strings)
                 lis = content_td.ul.li
@@ -71,3 +75,10 @@ async def fetch_notifications():
     except Exception as e:
         logger.error(e, exc_info=True)
         return "error in notification fetch\n\n" + traceback.format_exc()
+
+
+# if __name__ == "__main__":
+#     import asyncio
+
+#     r = asyncio.run(fetch_notifications())
+#     print(r)
