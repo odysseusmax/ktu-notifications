@@ -90,7 +90,7 @@ async def notification_fetcher():
                                 }
                             },
                         )
-                        await initiate_notify(change)
+                        # await initiate_notify(change)
                         logger.info("potential new notification detected!")
                         cur_notifications = notifications
 

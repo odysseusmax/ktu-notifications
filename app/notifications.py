@@ -55,7 +55,7 @@ async def fetch_notifications():
             table = soup.table
             trs = table.find_all("tr")
             notifications = []
-            for tr in trs[:2]:
+            for tr in trs:
                 try:
                     date_td, content_td = tr.find_all("td")
                 except Exception:
